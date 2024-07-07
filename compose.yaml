@@ -1,0 +1,15 @@
+services:
+  back:
+    build:
+      context: .
+      dockerfile: docker/back/Dockerfile
+    ports:
+      - target: 80
+        published: 20000
+    develop:
+      watch:
+        - path: back/Pipfile.lock
+          action: rebuild
+        - path: back/src/
+          target: /app/src/
+          action: sync
